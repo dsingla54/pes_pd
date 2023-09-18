@@ -308,24 +308,48 @@ magic -T sky130A.tech sky130_inv.mag
 ## Exploring the Layout displayed by MAGIC
 
 Select the specific layer/device by hovering over the object and pressing, s, iteratively, until you traverse the hierarchy to the specified object:
-![d3_1](https://github.com/ramdev604/pes_pd/assets/43489027/7e77d661-2c1e-4f20-93a0-09eb411a247e)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/bb944d7a-9f9f-48b5-887a-8deaf74e8e3b)
+
 
 
 - select a region from the layout, go to the console and type ```what``` to display the information of selected area
+  ![image](https://github.com/dsingla54/pes_pd/assets/139515749/f931a6f1-e6b7-4b72-859b-5a9e543cbbb0)
+
 - To select a region, place ```cursor``` on that point and  press```s```. More the number of times you press ```s```, higher the abstraction selected.
+**DRC Errors**
+
+DRC errors in magic will be highlighted with white dotted lines:
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/daf19ec0-5d0a-4a34-b8be-8b94de1997fa)
 
 
+To identify DRC errors select DRC find next error:
+it will be displayed on the tkcon window
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/ed39fb6f-7180-44c2-bfb2-2079b5de858f)
+
+
+**Extracting to SPICE**
+Command 
+```
+extract all
+ext2spice cthresh 0 rthresh 0
+```
+cthresh and rthresh are used to extract all parasatic capacitances.
+
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/b7145819-7efd-4396-a4db-62812a515387)
 
 
 ## Modified Spice netlist
 
-![modifiedspice](https://github.com/ramdev604/pes_pd/assets/43489027/78efc81d-8f8d-4aa0-8a9c-5dd210ddbfa8)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/582e10a9-1e3a-4bdb-84e6-3a6154074b7b)
+
 
 
 To run the spice netlist, run ```ngspice sky130_inv.spice``` and ```plot y vs time a```
-![d3_2](https://github.com/ramdev604/pes_pd/assets/43489027/375b8998-04a9-4537-af16-35ae3ba9ebc1)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/a14ecda6-8663-4657-95e8-9226385de2ae)
 
-![d3_3](https://github.com/ramdev604/pes_pd/assets/43489027/735909c7-fd85-4a8e-bf3f-7405d4e839d7)
+
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/4428e20e-3cd2-44a9-8f8a-be9a9e4afd45)
+
 
 
 The results obtained from the graph are :
@@ -348,14 +372,16 @@ Track info can be found at :
 
 ``` ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/openlane/sky130fd_sc_hd/tracks.info```
 
-![d4_1](https://github.com/ramdev604/pes_pd/assets/43489027/e1479fe6-55ca-4ed7-a226-2791275da645)
+![d4 p1](https://github.com/dsingla54/pes_pd/assets/139515749/c331d8e5-897e-4308-ab09-84efe19981fd)
+
 
 
 - 1st value indicates the offset and 2nd value indicates the pitch along provided direction
 
 ### Setting grid values using above file info
 
-![d4_2](https://github.com/ramdev604/pes_pd/assets/43489027/1dfd759c-446f-419a-b276-aa4fa0a465bc)
+![d4 p2](https://github.com/dsingla54/pes_pd/assets/139515749/952775d5-796c-4e6b-8cbd-276e449d8978)
+
 
 
 
@@ -373,8 +399,7 @@ Since the layout is perfect, we can generate the lef file
 #### 2. Open the file and extract LEF
    - Open using ``` magic -T sky130A.tch sky130_vsdinv.mag```
    - in the console opened, type ```lef write``` and a lef file will be generated
-
-![d4_3](https://github.com/ramdev604/pes_pd/assets/43489027/d6267e2d-62f1-4fd0-84b7-e9b3e5c8df6b)
+![d4 p3](https://github.com/dsingla54/pes_pd/assets/139515749/7bfa171a-8e8d-4291-9473-7b315df99587)
 
 
 
@@ -385,8 +410,8 @@ Since the layout is perfect, we can generate the lef file
           set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
         
           add_lefs -src $lefs
+![d4 p4](https://github.com/dsingla54/pes_pd/assets/139515749/d910e345-7f01-4753-92a6-1ce5eec05a65)
 
-![d4_4](https://github.com/ramdev604/pes_pd/assets/43489027/b545b775-280d-4d24-9601-845dcb073f02)
 
 
 since there is slack, we have to reduce it
@@ -404,10 +429,12 @@ For the design to be complete, the worst negative slack needs to be above or equ
     - The synthesis result is :
       
 
-![d4_5](https://github.com/ramdev604/pes_pd/assets/43489027/f08a7a45-ce8e-4b9f-b385-c4556c3fb5a5)
+![d4 p5](https://github.com/dsingla54/pes_pd/assets/139515749/d5aaf76e-5580-487e-8bca-b76dbfaccdd6)
+
 
     
-![d4_6](https://github.com/ramdev604/pes_pd/assets/43489027/53d4f874-ccb3-4d10-b7a9-a38a798682c5)
+![d4 p6](https://github.com/dsingla54/pes_pd/assets/139515749/cedbad61-8fa8-40dd-8786-6dfb480109e4)
+
 
 
 
@@ -418,13 +445,15 @@ For the design to be complete, the worst negative slack needs to be above or equ
 
     - We can see which net is driving most outputs and replace the driver cell with larger form of its own kind
 
-    ![d4_7](https://github.com/ramdev604/pes_pd/assets/43489027/3d290a73-ce45-4909-8e78-f1383db6436f)
+ ![d4 p7](https://github.com/dsingla54/pes_pd/assets/139515749/8b9805b0-b8a1-4064-a09b-54636d3df1e7)
+
 
 
 4. Optimize the fanout value with OpenLANE tool
 
 Since we have synthesised the core using our vsdinv cell too and as it got successfully synthesized, it should be visible in layout after ```run_placement``` stage which is followed after ```run_floorplan``` stage
-![d4_8](https://github.com/ramdev604/pes_pd/assets/43489027/4092e3cf-65e1-435f-83b5-03dc2486eb5b)
+![d4 p8](https://github.com/dsingla54/pes_pd/assets/139515749/04791844-43fc-4ac9-94b6-57369d16565f)
+
 
 </details>
 
@@ -434,19 +463,28 @@ Since we have synthesised the core using our vsdinv cell too and as it got succe
 
 ## Power Distribution Network
 
-After generating our clock tree network and verifying post routing STA checks we are ready to generate the power distribution network ```gen_pdn``` in OpenLANE:
+PDN (Power Delivery Network) routing is a crucial aspect of integrated circuit design. It involves the creation of a network of traces and components to ensure that power is distributed effectively and reliably to all parts of the electronic device. 
 
-The PDN feature within OpenLANE will create:
+Global and detailed routing are two essential steps in the design and manufacturing of integrated circuits. 
+After generating our clock tree network  we  generate the power distribution network gen_pdn using  OpenLANE:
 
-- Power ring global to the entire core
+The PDN  will create:
+
+- Power ring global for the entire core
+A global power ring is a continuous metal ring that surrounds the entire core of the IC.It's used to distribute power (VDD) uniformly to the core logic and various functional blocks.The power ring ensures that all regions of the core receive power without significant voltage drops.
+
 - Power halo local to any preplaced cells
+A power halo is a localized power distribution network around specific preplaced cells or macroblocks on the chip.Preplaced cells are often fixed in their positions, and a power halo provides them with the necessary power connections.
+
 - Power straps to bring power into the center of the chip
+Power straps are metal traces or structures used to bring power from the periphery of the chip towards the central regions.They are essential for delivering power to the core logic and other critical areas, reducing the distance power must travel.Power straps help maintain uniform power distribution across the chip.
+
 - Power rails for the standard cells
+Power rails are metal lines that run vertically or horizontally across the chip, supplying power to standard cells .These power rails ensure that each standard cell has access to the power it needs for proper operation.
 
-![d5_1](https://github.com/ramdev604/pes_pd/assets/43489027/d49d45aa-5d23-4e8f-930c-948c394c4af7)
-
-
-Note: The pitch of the metal 1 power rails defines the height of the standard cells
+```gen_pdn```
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/4356d7e0-d23b-4b6c-8ccc-7cd3bdbbc518)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/75b66a01-77bf-485a-a87c-5876ebf41a99)
 
 ## Global and Detailed Routing
 
