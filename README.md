@@ -20,7 +20,7 @@ The journey from RTL code to a polished GDSII layout encompasses a series of cri
    - `yosys`: Embarks on RTL synthesis.
    - `abc`: Undertakes technology mapping.
    - `OpenSTA`: Performs static timing analysis, yielding valuable timing reports.
-     ![image](https://github.com/dsingla54/pes_pd/assets/139515749/f9a2825d-5de8-4372-b91d-504266b4f054)
+     ![i1](https://github.com/dsingla54/pes_pd/assets/139515749/f9a2825d-5de8-4372-b91d-504266b4f054)
 
 
 2. **Floorplan and Power Delivery Network (PDN)**:
@@ -28,7 +28,7 @@ The journey from RTL code to a polished GDSII layout encompasses a series of cri
    - `ioplacer`: Strategically places macro input and output ports.
    - `pdn`: Generates the power distribution network.
    - `tapcell`: Incorporates welltap and decap cells into the floorplan.
-     ![image](https://github.com/dsingla54/pes_pd/assets/139515749/2520d6be-5583-4f1e-9037-d89fe5225d95)
+     ![i2](https://github.com/dsingla54/pes_pd/assets/139515749/2520d6be-5583-4f1e-9037-d89fe5225d95)
 
 
 3. **Placement**:
@@ -36,18 +36,18 @@ The journey from RTL code to a polished GDSII layout encompasses a series of cri
    - `Resizer`: Offers optional design optimizations.
    - `OpenPhySyn`: Delivers timing optimizations.
    - `OpenDP`: Handles detailed placement to regularize globally placed components.
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/50497c70-e7ba-462f-83c9-5ce0fca72826)
+![i3](https://github.com/dsingla54/pes_pd/assets/139515749/50497c70-e7ba-462f-83c9-5ce0fca72826)
 
 4. **Clock Tree Synthesis (CTS)**:
    - `TritonCTS`: Synthesizes the clock distribution network, also known as the clock tree.
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/5cdeb478-8af4-4d49-8d15-f99fbccb76b2)
+![i4](https://github.com/dsingla54/pes_pd/assets/139515749/5cdeb478-8af4-4d49-8d15-f99fbccb76b2)
 
 5. **Routing**:
    - `FastRoute`: Conducts global routing, generating a guide file for the detailed router.
    - `CU-GR`: Offers an alternative for global routing.
    - `TritonRoute`: Executes detailed routing.
    - `SPEF-Extractor`: Takes care of SPEF extraction.
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/e9105514-0dd6-4b13-bd51-4e4354dccd9d)
+![i5](https://github.com/dsingla54/pes_pd/assets/139515749/e9105514-0dd6-4b13-bd51-4e4354dccd9d)
 
 6. **GDSII Generation**:
    - `Magic`: Produces the final GDSII layout file from the routed DEF.
@@ -127,12 +127,12 @@ cd openlane
 ```
 Now when we  type the ```docker``` command a shell opens .
 In the shell we type ```./flow.tcl -interactive```
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/08382953-2813-491f-a3fe-69ff6f8b2e2a)
+![d1 p1](https://github.com/dsingla54/pes_pd/assets/139515749/08382953-2813-491f-a3fe-69ff6f8b2e2a)
 flow.tcl is the file that contains the script to run the designs
 
 Then we type ```package require openlane 0.9``` to import all the packages 
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/c7c742df-cc7e-4703-8654-cc939f68fbbd)
+![d1 p2](https://github.com/dsingla54/pes_pd/assets/139515749/c7c742df-cc7e-4703-8654-cc939f68fbbd)
 
 
 
@@ -142,11 +142,11 @@ Now for the design setup stage, we will be working on picorv32a design.
 prep -design picorv32a
 ```
 
-![image](https://github.com/Anirudh-Ravi123/pes_pd/assets/142154804/9c6e9c0a-cbcd-472e-af24-a666bfb78444)
+![d1 p3](https://github.com/Anirudh-Ravi123/pes_pd/assets/142154804/9c6e9c0a-cbcd-472e-af24-a666bfb78444)
 
 After preparing the design, we can see that a new 'runs' folder is created.
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/48bce187-63aa-41e9-b7a4-2c38aaeef88d)
+![d1 p4](https://github.com/dsingla54/pes_pd/assets/139515749/48bce187-63aa-41e9-b7a4-2c38aaeef88d)
 
 
 
@@ -155,19 +155,19 @@ Now we synthesis the design
 run_synthesis
 ```
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/ec409133-3598-42dd-b51e-3b3c0c9f3b91)
+![d1 p5](https://github.com/dsingla54/pes_pd/assets/139515749/ec409133-3598-42dd-b51e-3b3c0c9f3b91)
 
 
 Synthesized 
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/f0b4d389-40c8-4dc3-8801-9c3d89138fdd)
+![d1 p6](https://github.com/dsingla54/pes_pd/assets/139515749/f0b4d389-40c8-4dc3-8801-9c3d89138fdd)
 
 
 
 ### Flop ratio = 1613/14876 = 0.108
 
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/a1bd0f82-5c6f-4ecd-90ff-963eeb27ff63)
+![d1 p7](https://github.com/dsingla54/pes_pd/assets/139515749/a1bd0f82-5c6f-4ecd-90ff-963eeb27ff63)
 
 </details>
 
@@ -202,7 +202,7 @@ in OpenLANE, enter ```run_floorplan``` and the results will be updated in the ru
 To view the layout of the floorplan, use the command ```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &```
 
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/7389b7f2-ea92-46ce-9caa-f51df9a1b474)
+![d2 p1](https://github.com/dsingla54/pes_pd/assets/139515749/7389b7f2-ea92-46ce-9caa-f51df9a1b474)
 
 
 
@@ -231,13 +231,13 @@ Final placement optimization, coupled with timing analysis using an ideal clock,
 ```run_placement```
 
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/92c8d807-3235-4387-8560-3e6e76844bf3)
+![d2 p2](https://github.com/dsingla54/pes_pd/assets/139515749/92c8d807-3235-4387-8560-3e6e76844bf3)
 
 
 To view the layout of the placement, use the command ```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &```
 
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/59455885-43cd-498a-bf15-e9e3c3babda3)
+![d2 p3](https://github.com/dsingla54/pes_pd/assets/139515749/59455885-43cd-498a-bf15-e9e3c3babda3)
 
 
 ## Cell Design Flow
@@ -265,7 +265,7 @@ Characterization is a well-defined flow consisting of the following steps:
 
 **Timing threshold definitions**
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/f74a6ba7-38ff-4991-9b3d-8e3796d6897d)
+![d2 p4](https://github.com/dsingla54/pes_pd/assets/139515749/f74a6ba7-38ff-4991-9b3d-8e3796d6897d)
 
 
 
@@ -308,23 +308,23 @@ magic -T sky130A.tech sky130_inv.mag
 ## Exploring the Layout displayed by MAGIC
 
 Select the specific layer/device by hovering over the object and pressing, s, iteratively, until you traverse the hierarchy to the specified object:
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/bb944d7a-9f9f-48b5-887a-8deaf74e8e3b)
+![d3 p1](https://github.com/dsingla54/pes_pd/assets/139515749/bb944d7a-9f9f-48b5-887a-8deaf74e8e3b)
 
 
 
 - select a region from the layout, go to the console and type ```what``` to display the information of selected area
-  ![image](https://github.com/dsingla54/pes_pd/assets/139515749/f931a6f1-e6b7-4b72-859b-5a9e543cbbb0)
+  ![d3 p2](https://github.com/dsingla54/pes_pd/assets/139515749/f931a6f1-e6b7-4b72-859b-5a9e543cbbb0)
 
 - To select a region, place ```cursor``` on that point and  press```s```. More the number of times you press ```s```, higher the abstraction selected.
 **DRC Errors**
 
 DRC errors in magic will be highlighted with white dotted lines:
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/daf19ec0-5d0a-4a34-b8be-8b94de1997fa)
+![d3 p3](https://github.com/dsingla54/pes_pd/assets/139515749/daf19ec0-5d0a-4a34-b8be-8b94de1997fa)
 
 
 To identify DRC errors select DRC find next error:
 it will be displayed on the tkcon window
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/ed39fb6f-7180-44c2-bfb2-2079b5de858f)
+![d3 p4](https://github.com/dsingla54/pes_pd/assets/139515749/ed39fb6f-7180-44c2-bfb2-2079b5de858f)
 
 
 **Extracting to SPICE**
@@ -335,20 +335,20 @@ ext2spice cthresh 0 rthresh 0
 ```
 cthresh and rthresh are used to extract all parasatic capacitances.
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/b7145819-7efd-4396-a4db-62812a515387)
+![d3 p5](https://github.com/dsingla54/pes_pd/assets/139515749/b7145819-7efd-4396-a4db-62812a515387)
 
 
 ## Modified Spice netlist
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/582e10a9-1e3a-4bdb-84e6-3a6154074b7b)
+![d3 p6](https://github.com/dsingla54/pes_pd/assets/139515749/582e10a9-1e3a-4bdb-84e6-3a6154074b7b)
 
 
 
 To run the spice netlist, run ```ngspice sky130_inv.spice``` and ```plot y vs time a```
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/a14ecda6-8663-4657-95e8-9226385de2ae)
+![d3 p7](https://github.com/dsingla54/pes_pd/assets/139515749/a14ecda6-8663-4657-95e8-9226385de2ae)
 
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/4428e20e-3cd2-44a9-8f8a-be9a9e4afd45)
+![d3 p8](https://github.com/dsingla54/pes_pd/assets/139515749/4428e20e-3cd2-44a9-8f8a-be9a9e4afd45)
 
 
 
@@ -483,8 +483,8 @@ Power straps are metal traces or structures used to bring power from the periphe
 Power rails are metal lines that run vertically or horizontally across the chip, supplying power to standard cells .These power rails ensure that each standard cell has access to the power it needs for proper operation.
 
 ```gen_pdn```
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/4356d7e0-d23b-4b6c-8ccc-7cd3bdbbc518)
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/75b66a01-77bf-485a-a87c-5876ebf41a99)
+![d5 p1   ](https://github.com/dsingla54/pes_pd/assets/139515749/4356d7e0-d23b-4b6c-8ccc-7cd3bdbbc518)
+![d5 p2](https://github.com/dsingla54/pes_pd/assets/139515749/75b66a01-77bf-485a-a87c-5876ebf41a99)
 
 ## Global and Detailed Routing
 
