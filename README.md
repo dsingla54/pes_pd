@@ -174,7 +174,27 @@ Synthesized
 <details>
 <summary>DAY 2 : Good Floorplan vs Bad Floorplan and Introduction to library cells</summary>
 <br>
+## Strategic Considerations for Chip Floor Planning
 
+In the intricate realm of chip design, meticulous floor planning is paramount. Here are key factors to consider when orchestrating the layout of your semiconductor masterpiece:
+
+- **Defining Core and Die Dimensions**:
+  - **Die**: The encompassing entity that constitutes the entire semiconductor chip, housing not only the core but also I/O pads and supplementary features.
+  - **Core**: The central sanctum of the chip, where the bulk of the active circuitry thrives, including the CPU, GPU, memory, and assorted logic.
+
+- **Positioning Pre-Placed Cells**:
+  - **Pre-Placed Cells**: Distinctive blocks or cells, encompassing memories, clock gating cells, comparators, muxes, and more, thoughtfully positioned by the chip designer in predetermined locations prior to engaging automated placement and routing tools.
+
+- **Incorporating Decoupling Capacitors**:
+  In the realm of extensive circuits adorned with numerous resistors, challenges arise when capacitors fail to charge adequately due to voltage drops. To combat this, the employment of decoupling capacitors becomes imperative. These capacitors swiftly store and discharge electrical energy, effectively absorbing excess charge to filter out high-frequency noise and transient voltage fluctuations.
+
+- **Strategic Power Planning**:
+  During the floor planning phase, meticulous power planning is indispensable for mitigating noise in digital circuits, attributed to voltage droop and ground bounce. Transitions on a net can lead to the release of charge from coupling capacitors to the ground. To avert issues arising from insufficient ground taps, a robust Power Distribution Network (PDN) adorned with numerous power strap taps is requisite. This multiplicity of taps lowers the resistance associated with the PDN, thus enhancing performance and lowering noise.
+
+- **Pin Placement Prowess**:
+  Pin placement constitutes a pivotal facet of floor planning. It serves to minimize buffering, enhance power efficiency, and ameliorate timing delays. The High-Level Description (HDL) netlist is harnessed as a guiding star, directing the precise placement of pins within the circuit. Common pins are efficiently clustered, fostering streamlined connections, and optimizing overall performance.
+
+In the intricate ballet of chip design, these strategic considerations for floor planning ensure that your semiconductor marvel not only meets but surpasses expectations.
 ## Floorplan
 
 in OpenLANE, enter ```run_floorplan``` and the results will be updated in the runs folder
@@ -182,21 +202,42 @@ in OpenLANE, enter ```run_floorplan``` and the results will be updated in the ru
 To view the layout of the floorplan, use the command ```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &```
 
 
-![d2_1](https://github.com/ramdev604/pes_pd/assets/43489027/b29d33fe-8860-4663-8a3e-72f0011602c3)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/eccf947a-7996-4da5-a400-18ae5cdfd6db)
+
 
 
 ## Library Binding and Placement
-### Placement
+
+
+**Netlist Binding and Initial Placement**
+
+Netlist binding involves mapping the logical representation of a digital design, often described in a hardware description language (HDL), onto a library of standard cells. Each component in the design is associated with a specific shape defined in the library. These shapes, along with their functionality, are part of the library. Subsequently, these components are strategically placed on the floorplan in an efficient manner to minimize signal delay.
+
+- Components from the netlist are positioned within the core area.
+- Placement is influenced by the proximity to pins for efficient signal routing.
+- Strategic placement ensures swift signal propagation, especially for critical paths, with the addition of buffers to maintain signal integrity.
+
+**Optimized Placement Using Estimated Wire-Length and Capacitance**
+
+Estimating wire-length and capacitance is crucial for optimizing component placement, considering factors like signal delay, power consumption, and signal integrity. Large wire areas can introduce significant resistance and capacitance, potentially degrading signal quality. To address this, signals are routed through buffers to replicate and route them efficiently.
+
+Integrating wire-length and capacitance estimates into the placement optimization process helps strike a balance between performance, power, and area considerations. The objective is to minimize signal delays, reduce power consumption, and ensure signal integrity while meeting design constraints.
+
+**Final Placement Optimization**
+
+Final placement optimization, coupled with timing analysis using an ideal clock, focuses on refining the physical arrangement of components in an integrated circuit while assuming perfect clock signals. This approach streamlines the physical layout without accounting for clock-related timing challenges.
+
 
 ```run_placement```
 
 
-![d2_2](https://github.com/ramdev604/pes_pd/assets/43489027/6e35d72e-789f-4026-85b6-bb02daa05741)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/92c8d807-3235-4387-8560-3e6e76844bf3)
+
 
 To view the layout of the placement, use the command ```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &```
 
 
-![d2_3](https://github.com/ramdev604/pes_pd/assets/43489027/a163cce3-dd19-4dae-9a59-271a3f96131b)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/ac27bd8d-5fbe-4d03-96a2-43108f78c22c)
 
 
 ## Cell Design Flow
@@ -220,24 +261,33 @@ Characterization is a well-defined flow consisting of the following steps:
 - Apply input or stimulus
 - Provide necessary simulation commands
 
-### General Timing characterization parameters
+## General timing characterization parameters
 
-#### Timing threshold definitions
+**Timing threshold definitions**
 
-- ```slew_low_rise_thr``` - 20% from bottom power supply when the signal is rising
-- ```slew_high_rise_thr``` - 20% from top power supply when the signal is rising
-- ```slew_low_fall_thr``` - 20% from bottom power supply when the signal is falling
-- ```slew_high_fall_thr``` - 20% from top power supply when the signal is falling
-- ```in_rise_thr``` - 50% point on the rising edge of input
-- ```in_fall_thr``` - 50% point on the falling edge of input
-- ```out_rise_thr``` - 50% point on the rising edge of ouput
-- ```out_fall_thr``` - 50% point on the falling edge of ouput
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/f74a6ba7-38ff-4991-9b3d-8e3796d6897d)
 
-These are the main parameters that we use to calculate factors such as propogation delay and transition time
 
-- ```propogation delay ``` - time(out_*_thr) - time(in_*_thr)
-- ```Transition time``` - time(slew_high_rise_thr) - time(slew_low_rise_thr)
 
+
+**Propagation Delay**
+The time difference between when the transitional input reaches 50% of its final value and when the output reaches 50% of its final value. 
+
+```
+Propagation delay=time(out_fall_thr)-time(in_rise_thr)
+```
+
+**Transition Time**
+The time it takes the signal to move between states is the transition time , where the time is measured between 10% and 90% or 20% to 80% of the signal levels.
+
+```
+Rise transition time = time(slew_high_rise_thr) - time (slew_low_rise_thr)
+```
+
+
+```
+Fall transition time = time(slew_high_fall_thr) - time (slew_low_fall_thr)
+```
 
 </details>
 
