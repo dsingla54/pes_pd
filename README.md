@@ -202,7 +202,7 @@ in OpenLANE, enter ```run_floorplan``` and the results will be updated in the ru
 To view the layout of the floorplan, use the command ```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &```
 
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/eccf947a-7996-4da5-a400-18ae5cdfd6db)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/7389b7f2-ea92-46ce-9caa-f51df9a1b474)
 
 
 
@@ -237,7 +237,7 @@ Final placement optimization, coupled with timing analysis using an ideal clock,
 To view the layout of the placement, use the command ```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &```
 
 
-![image](https://github.com/dsingla54/pes_pd/assets/139515749/ac27bd8d-5fbe-4d03-96a2-43108f78c22c)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/59455885-43cd-498a-bf15-e9e3c3babda3)
 
 
 ## Cell Design Flow
