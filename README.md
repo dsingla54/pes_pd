@@ -99,48 +99,75 @@ run_lvs
 run_antenna_check
 ```
 
+
+
+
+
 # Labs
 <details>
 <summary>DAY 1 : Inception of opensource-EDA, Openlane and Skywater130</summary>
 <br>
-
 ## Skywater-130 PDK
 
+## Getting Familiar with the Open Source EDA Tools
 
-## Invoking OpenLANE
+Tool we will be  working on pdk variant called sky130_fd_sc_hd
 
-![d1_1](https://github.com/ramdev604/pes_pd/assets/43489027/cb079707-c611-486c-bab5-4bdde433faae)
+- sky130 : is the process name
+- fd : skywater foundary
+- sc : standard cell
+- hd(high density) : variant of pdk
 
-
+**Design Preperation step**
+First we go the the working directory 
+```
+cd Desktop/work/tools/
+cd openlane_working_dir/
+cd openlane
+```
+Now when we  type the ```docker``` command a shell opens .
+In the shell we type ```./flow.tcl -interactive```
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/08382953-2813-491f-a3fe-69ff6f8b2e2a)
 flow.tcl is the file that contains the script to run the designs
 
-## Importing package
+Then we type ```package require openlane 0.9``` to import all the packages 
 
-Different software dependencies are needed to run OpenLANE. To import these into the OpenLANE tool we need to run: 
-```package require openlane 0.9```
-
-
-## Prepare the design for the flow 
-
-```prep -design picorv32a```
-
-![d1_2](https://github.com/ramdev604/pes_pd/assets/43489027/fa1bfd0c-9e08-4fe9-8117-73a577d94ee1)
-
-
-## Synthesis
-
-```run_synthesis```
-
-![d1_3](https://github.com/ramdev604/pes_pd/assets/43489027/dd3a1f39-7e8a-4769-8e69-dffd743ff44c)
-
-
-![d1_4](https://github.com/ramdev604/pes_pd/assets/43489027/eb0124bb-f865-4340-af6a-3c9b13e0da0b)
-
-### Flop Ratio = (No. of D flip flops / Total number of cells) = 1613/14876 = 10.08%
-                
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/c7c742df-cc7e-4703-8654-cc939f68fbbd)
 
 
 
+Now for the design setup stage, we will be working on picorv32a design.
+
+```
+prep -design picorv32a
+```
+
+![image](https://github.com/Anirudh-Ravi123/pes_pd/assets/142154804/9c6e9c0a-cbcd-472e-af24-a666bfb78444)
+
+After preparing the design, we can see that a new 'runs' folder is created.
+
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/48bce187-63aa-41e9-b7a4-2c38aaeef88d)
+
+
+
+Now we synthesis the design
+```
+run_synthesis
+```
+
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/ec409133-3598-42dd-b51e-3b3c0c9f3b91)
+
+
+Synthesized 
+
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/f0b4d389-40c8-4dc3-8801-9c3d89138fdd)
+
+
+
+### Flop ratio = 1613/14876 = 0.108
+
+
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/a1bd0f82-5c6f-4ecd-90ff-963eeb27ff63)
 
 </details>
 
