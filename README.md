@@ -238,6 +238,7 @@ To view the layout of the placement, use the command ```magic -T /home/vsduser/D
 
 
 ![d2 p3](https://github.com/dsingla54/pes_pd/assets/139515749/59455885-43cd-498a-bf15-e9e3c3babda3)
+![image](https://github.com/dsingla54/pes_pd/assets/139515749/65bbbfea-a208-43aa-9659-facda88faec7)
 
 
 ## Cell Design Flow
