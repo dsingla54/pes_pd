@@ -141,8 +141,7 @@ Now for the design setup stage, we will be working on picorv32a design.
 ```
 prep -design picorv32a
 ```
-
-![d1 p3](https://github.com/Anirudh-Ravi123/pes_pd/assets/142154804/9c6e9c0a-cbcd-472e-af24-a666bfb78444)
+![d1 p3](https://github.com/dsingla54/pes_pd/assets/139515749/d7f0dc05-a761-4b25-b480-320f8db7c62a)
 
 After preparing the design, we can see that a new 'runs' folder is created.
 
